@@ -16,7 +16,7 @@ app.use(cors({
 }));
 app.use(express.json());
 
-mongoose.connect('mongodb://127.0.0.1:27017/ecommerce')
+mongoose.connect(process.env.DATABASE_URL || '')
   .then(() => console.log('MongoDB Connected!'))
   .catch((err) => console.error('MongoDB Connection Error:', err));
 
