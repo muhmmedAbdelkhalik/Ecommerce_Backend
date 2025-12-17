@@ -25,6 +25,7 @@ export const register = async (params: RegisterParams) => {
         success: true,
         message: 'User created successfully',
         data: user,
+        token: generateToken(user),
     };
 }
 

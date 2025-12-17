@@ -3,10 +3,11 @@ import HomePage from "./pages/home";
 import LoginPage from "./pages/login";
 import RegisterPage from "./pages/register";
 import Navbar from "./components/navbar";
+import AuthProvider from "./context/auth/authProvider";
 
 function App() {
   return (
-    <>
+    <AuthProvider>
       <BrowserRouter>
         <Navbar />
         
@@ -16,7 +17,7 @@ function App() {
           <Route path="/register" element={<RegisterPage />} />
         </Routes>
       </BrowserRouter>
-    </>
+    </AuthProvider>
   );
 }
 

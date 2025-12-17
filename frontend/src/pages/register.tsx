@@ -9,6 +9,7 @@ import {
   Alert,
 } from "@mui/material";
 import { BASE_URL } from "../constants/baseUrl";
+import { useAuth } from "../context/auth/authContext";
 
 interface RegisterFormData {
   firstName: string;
@@ -27,6 +28,8 @@ const RegisterPage = () => {
   const [error, setError] = useState<string>("");
   const [success, setSuccess] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
+
+  const { login } = useAuth();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -57,6 +60,9 @@ const RegisterPage = () => {
 
       if (response.ok && data.message) {
         setSuccess(data.message || "Registration successful!");
+        login(data.data.firstName + " " + data.data.lastName, data.token);
+        console.log(data.data.firstName + " " + data.data.lastName, data.token);
+        console.log(data.data);
         // Reset form
         setFormData({
           firstName: "",

@@ -9,10 +9,12 @@ import Container from "@mui/material/Container";
 import Avatar from "@mui/material/Avatar";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
+import { useAuth } from "../context/auth/authContext";
 
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 function Navbar() {
+  const { userName, token } = useAuth();
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(
     null
   );
@@ -24,6 +26,7 @@ function Navbar() {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
+  console.log(userName, token);
 
   return (
     <AppBar position="static">
@@ -69,7 +72,7 @@ function Navbar() {
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Avatar" src="/static/images/avatar/2.jpg" />
+                <Avatar alt={userName || "Avatar"} src="/static/images/avatar/2.jpg" />
               </IconButton>
             </Tooltip>
             <Menu
