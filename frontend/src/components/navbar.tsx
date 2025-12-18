@@ -10,9 +10,10 @@ import Avatar from "@mui/material/Avatar";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import { useAuth } from "../context/auth/authContext";
-import { Button } from "@mui/material";
+import { Button, Badge } from "@mui/material";
 import { useNavigate, Link } from "react-router-dom";
 import ShoppingBagIcon from "@mui/icons-material/ShoppingBag";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import LoginIcon from "@mui/icons-material/Login";
 import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import LogoutIcon from "@mui/icons-material/Logout";
@@ -111,6 +112,40 @@ function Navbar() {
             </Typography>
           </Box>
           <Box sx={{ flexGrow: 1 }} />
+
+          {/* Shopping Cart */}
+          <Tooltip title="Shopping Cart" arrow>
+            <IconButton
+              component={Link}
+              to="/cart"
+              sx={{
+                color: "white",
+                mr: { xs: 1, sm: 2 },
+                transition: "all 0.3s ease",
+                "&:hover": {
+                  transform: "scale(1.1)",
+                  backgroundColor: "rgba(255, 255, 255, 0.1)",
+                },
+              }}
+            >
+              <Badge
+                badgeContent={0}
+                color="error"
+                sx={{
+                  "& .MuiBadge-badge": {
+                    fontSize: "0.7rem",
+                    minWidth: 18,
+                    height: 18,
+                    backgroundColor: "#ff4757",
+                    fontWeight: 600,
+                  },
+                }}
+              >
+                <ShoppingCartIcon sx={{ fontSize: { xs: 24, sm: 26 } }} />
+              </Badge>
+            </IconButton>
+          </Tooltip>
+
           {isAuthenticated && (
             <Box
               sx={{
